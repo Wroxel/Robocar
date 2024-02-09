@@ -4,22 +4,20 @@ import time
 
 
 def wall_follow():
-
-    # print(f"New {distance} cm")
     while True:
         distance = sensors.gy53()
         time.sleep(0.2)
         if distance > 80:
-            print(f"Drive left distance is {distance}")
-        elif distance <= 80 >= 50:
-            print(f"Drive foward distance is {distance}")
-        elif distance > 50 <= 1:
             print(f"Drive right distance is {distance}")
+            # Få den til at køre til højre i x sekunder
+
+        elif distance > 30 and distance <= 80:
+            print(f"Drive forward distance is {distance}")
+            # Få den til at køre ligeud i x sekunder
+
+        elif distance <= 30 and distance > 0:
+            print(f"Drive left distance is {distance}")
+            # Få den til at køre til venstre x sekunder
+
         else:
-            print("None")
-    # while distance > 80:
-    #     print("Drive")
-    #     time.sleep(0.5)
-    # while distance < 80:
-    #     print("STOP")
-    #     time.sleep(0.5)
+            print("Else")
