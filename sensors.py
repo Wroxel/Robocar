@@ -7,7 +7,7 @@ import time
 def gy53():
     gy53 = Pin(17, Pin.IN)
     while True:
-        print("Checking")
+
         while gy53.value() == True:
             pass
         while gy53.value() == False:
@@ -19,15 +19,11 @@ def gy53():
         diffInMicroS = endtime - startTime
         diffInMM = diffInMicroS / 10
         diffInCM = diffInMicroS / 100
-        print("MM: ")
-        print(diffInMM)
-
-        print("CM: ")
-        print(diffInCM)
-        if diffInCM > 80:
-            print("Too far")
-        else:
-            print("You good")
+        diffInCM = diffInCM
+        # print("MM: ")
+        # print(diffInMM)
+        # print("CM: ")
+        # print(diffInCM)
         time.sleep(1)
 
         return diffInCM

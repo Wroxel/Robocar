@@ -3,11 +3,11 @@ import udp
 
 # import mode_remote
 # import mode_sumo
-# import mode_wallfollow
+import mode_wallfollow
 
 
 def main():
-    udp.udp_1()
+    mode_wallfollow.wall_follow()
 
 
 if __name__ == "__main__":

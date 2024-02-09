@@ -9,6 +9,10 @@ IN2 = Pin(3, Pin.OUT)
 IN3 = Pin(4, Pin.OUT)
 IN4 = Pin(5, Pin.OUT)
 
+# PWM pins
+pwm1 = PWM(Pin(6))
+pwm2 = PWM(Pin(7))
+
 
 def stopDrive():
     IN1.off()
@@ -17,10 +21,21 @@ def stopDrive():
     IN4.off()
 
 
-def drivePWM():
-    pwm1 = PWM(Pin(6))
-    pwm2 = PWM(Pin(7))
+def wall_followDrive():
+    pwm1.freq(500)
+    pwm2.freq(500)
 
+    dutycycle1 = 0.25
+    dutycycle2 = 0.25
+
+    while True:
+        pwm1.duty_u16(int(65536 * dutycycle1))
+        pwm2.duty_u16(int(65536 * dutycycle2))
+        IN1.on()
+        IN3.on()
+
+
+def drivePWM():
     # Kode der gøre at motorene køre men en bestemt hastighed hele tiden.
 
     pwm1.freq(500)
