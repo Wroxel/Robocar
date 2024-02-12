@@ -14,6 +14,7 @@ pwm1 = PWM(Pin(6))
 pwm2 = PWM(Pin(7))
 
 
+# Stopper med at køre
 def stopDrive():
     IN1.off()
     IN3.off()
@@ -21,18 +22,54 @@ def stopDrive():
     IN4.off()
 
 
-def wall_followDrive():
+# Kører til højre
+def right_Drive(right_speed, left_speed):
     pwm1.freq(500)
     pwm2.freq(500)
 
-    dutycycle1 = 0.25
-    dutycycle2 = 0.25
+    pwm1.duty_u16(int(65536 * right_speed))
+    pwm2.duty_u16(int(65536 * left_speed))
+    
+    IN1.on()
+    IN3.on()
+    time.sleep(1)
+    IN1.off()
+    IN3.off()
 
-    while True:
-        pwm1.duty_u16(int(65536 * dutycycle1))
-        pwm2.duty_u16(int(65536 * dutycycle2))
-        IN1.on()
-        IN3.on()
+    return
+
+# Kører ligeud
+def straight_Drive(right_speed, left_speed):
+    pwm1.freq(500)
+    pwm2.freq(500)
+
+    pwm1.duty_u16(int(65536 * right_speed))
+    pwm2.duty_u16(int(65536 * left_speed))
+    
+    IN1.on()
+    IN3.on()
+    time.sleep(1)
+    IN1.off()
+    IN3.off()
+
+    return
+
+
+# Kører til venstre
+def left_Drive(right_speed, left_speed):
+    pwm1.freq(500)
+    pwm2.freq(500)
+
+    pwm1.duty_u16(int(65536 * right_speed))
+    pwm2.duty_u16(int(65536 * left_speed))
+    
+    IN1.on()
+    IN3.on()
+    time.sleep(2)
+    IN1.off()
+    IN3.off()
+
+    return
 
 
 def drivePWM():
