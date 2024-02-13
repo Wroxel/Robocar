@@ -1,4 +1,6 @@
 import motors
 import udp
 
-# import ui
+
+def remote_control():
+    udp.udp_1()

@@ -22,61 +22,117 @@ def stopDrive():
     IN4.off()
 
 
-# Kører til højre
-def right_Drive(right_speed, left_speed):
-    pwm1.freq(500)
-    pwm2.freq(500)
-
-    pwm1.duty_u16(int(65536 * right_speed))
-    pwm2.duty_u16(int(65536 * left_speed))
-    
-    IN1.on()
-    IN3.on()
-    time.sleep(1)
-    IN1.off()
-    IN3.off()
-
-    return
-
 # Kører ligeud
-def straight_Drive(right_speed, left_speed):
-    pwm1.freq(500)
-    pwm2.freq(500)
+def straight_Drive(left_speed, right_speed):
+    pwm1.freq(800)
+    pwm2.freq(800)
 
     pwm1.duty_u16(int(65536 * right_speed))
     pwm2.duty_u16(int(65536 * left_speed))
-    
-    IN1.on()
-    IN3.on()
-    time.sleep(1)
-    IN1.off()
-    IN3.off()
+
+    IN2.on()
+    IN4.on()
+    time.sleep(2.5)
+    IN2.off()
+    IN4.off()
 
     return
 
 
 # Kører til venstre
-def left_Drive(right_speed, left_speed):
-    pwm1.freq(500)
-    pwm2.freq(500)
+def left_Drive(left_speed, right_speed):
+    pwm1.freq(800)
+    pwm2.freq(800)
 
-    pwm1.duty_u16(int(65536 * right_speed))
-    pwm2.duty_u16(int(65536 * left_speed))
-    
+    pwm1.duty_u16(int(65536 * left_speed))
+    pwm2.duty_u16(int(65536 * right_speed))
+
+    IN2.on()
+    IN4.on()
+    time.sleep(1)
+    IN2.off()
+    IN4.off()
+
+    return
+
+
+def left_Drive_Long(left_speed, right_speed):
+    pwm1.freq(800)
+    pwm2.freq(800)
+
+    pwm1.duty_u16(int(65536 * left_speed))
+    pwm2.duty_u16(int(65536 * right_speed))
+
+    IN2.on()
+    IN4.on()
+    time.sleep(3)
+    IN2.off()
+    IN4.off()
+
+    return
+
+
+def drive_Forward(left_speed, right_speed):
+    pwm1.freq(800)
+    pwm2.freq(800)
+
+    pwm1.duty_u16(int(65536 * left_speed))
+    pwm2.duty_u16(int(65536 * right_speed))
+
+    IN2.on()
+    IN4.on()
+    time.sleep(2)
+    IN2.off()
+    IN4.off()
+
+
+def drive_Left(left_speed, right_speed):
+    pwm1.freq(800)
+    pwm2.freq(800)
+
+    pwm1.duty_u16(int(65536 * left_speed))
+    pwm2.duty_u16(int(65536 * right_speed))
+
+    IN2.on()
+    IN4.on()
+    time.sleep(2)
+    IN2.off()
+    IN4.off()
+
+
+def drive_Right(left_speed, right_speed):
+    pwm1.freq(800)
+    pwm2.freq(800)
+
+    pwm1.duty_u16(int(65536 * left_speed))
+    pwm2.duty_u16(int(65536 * right_speed))
+
+    IN2.on()
+    IN4.on()
+    time.sleep(2)
+    IN2.off()
+    IN4.off()
+
+
+def drive_Backward(left_speed, right_speed):
+    pwm1.freq(800)
+    pwm2.freq(800)
+
+    pwm1.duty_u16(int(65536 * left_speed))
+    pwm2.duty_u16(int(65536 * right_speed))
+
     IN1.on()
     IN3.on()
     time.sleep(2)
     IN1.off()
     IN3.off()
 
-    return
-
 
 def drivePWM():
     # Kode der gøre at motorene køre men en bestemt hastighed hele tiden.
 
-    pwm1.freq(500)
-    pwm2.freq(500)
+    pwm1.freq(1400)
+    pwm2.freq(1400)
 
     dutycycle1 = 0.35
     dutycycle2 = 0.35

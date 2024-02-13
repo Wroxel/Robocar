@@ -30,16 +30,37 @@ def udp_1():
         bytesAddressPair = UDPServerConnect.recvfrom(bufferSize)
         message, clientAddress = bytesAddressPair
         print(message)
-        answear = b"default answear"
+        answer = b"default answer"
+
+        # Tilføj forskellige messages & funktioner her 😎 ->
+
         if message == b"on":
-            answear = b"onnn"
+            answer = b"on"
             motors.drivePWM()
 
         if message == b"off":
             motors.IN1.off()
+
         if message == b"ana":
-            answear = str(adc.read_u16())
+            answer = str(adc.read_u16())
+
+        if message == b"forward":
+            answer = b"forward"
+            motors.drive_Forward(0.30, 0.30)
+
+        if message == b"left":
+            answer = b"left"
+            motors.drive_Left(0.35, 0.25)
+
+        if message == b"right":
+            answer = b"right"
+            motors.drive_Right(0.25, 0.35)
+
+        if message == b"backward":
+            answer = b"backward"
+            motors.drive_Backward(0.30, 0.30)
+
         clientAddress = bytesAddressPair[1]
         print(clientAddress)
         print("Ready")
-        sent = UDPServerConnect.sendto(answear, clientAddress)
+        sent = UDPServerConnect.sendto(answer, clientAddress)
