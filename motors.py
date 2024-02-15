@@ -73,34 +73,49 @@ def left_Drive_Long(left_speed, right_speed):
 
 
 def drive_Forward(left_speed, right_speed):
-    pwm1.freq(800)
-    pwm2.freq(800)
+    IN1.off()
+    IN3.off()
+    IN2.off()
+    IN4.off()
+
+    pwm1.freq(500)
+    pwm2.freq(500)
 
     pwm1.duty_u16(int(65536 * left_speed))
     pwm2.duty_u16(int(65536 * right_speed))
 
     IN2.on()
     IN4.on()
-    time.sleep(2)
+    time.sleep(0.2)
     IN2.off()
     IN4.off()
 
 
 def drive_Left(left_speed, right_speed):
+    IN1.off()
+    IN3.off()
+    IN2.off()
+    IN4.off()
+
     pwm1.freq(800)
     pwm2.freq(800)
 
     pwm1.duty_u16(int(65536 * left_speed))
     pwm2.duty_u16(int(65536 * right_speed))
 
-    IN2.on()
+    IN1.on()
     IN4.on()
-    time.sleep(2)
-    IN2.off()
+    time.sleep(0.2)
+    IN1.off()
     IN4.off()
 
 
 def drive_Right(left_speed, right_speed):
+    IN1.off()
+    IN3.off()
+    IN2.off()
+    IN4.off()
+
     pwm1.freq(800)
     pwm2.freq(800)
 
@@ -108,13 +123,18 @@ def drive_Right(left_speed, right_speed):
     pwm2.duty_u16(int(65536 * right_speed))
 
     IN2.on()
-    IN4.on()
-    time.sleep(2)
+    IN3.on()
+    time.sleep(0.2)
     IN2.off()
-    IN4.off()
+    IN3.off()
 
 
 def drive_Backward(left_speed, right_speed):
+    IN1.off()
+    IN3.off()
+    IN2.off()
+    IN4.off()
+
     pwm1.freq(800)
     pwm2.freq(800)
 
@@ -123,7 +143,7 @@ def drive_Backward(left_speed, right_speed):
 
     IN1.on()
     IN3.on()
-    time.sleep(2)
+    time.sleep(0.2)
     IN1.off()
     IN3.off()
 

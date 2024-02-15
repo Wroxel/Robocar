@@ -8,8 +8,8 @@ import mode_wallfollow
 
 
 def main():
-    mode_wallfollow.wall_follow()
-    # udp.udp_1()
+    # mode_wallfollow.wall_follow()
+    udp.udp_1()
 
 
 if __name__ == "__main__":

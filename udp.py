@@ -12,7 +12,7 @@ def udp_1():
     wlan.active(True)
     wlan.connect("ITEK 2nd", "2nd_Semester_F24v")
 
-    while not wlan.isconnected() and wlan.status() >= 0:
+    while not wlan.isconnected():  # and wlan.status() >= 0:
         print("Waiting to connect")
         time.sleep(1)
 
@@ -46,19 +46,19 @@ def udp_1():
 
         if message == b"forward":
             answer = b"forward"
-            motors.drive_Forward(0.30, 0.30)
+            motors.drive_Forward(0.80, 0.80)
 
         if message == b"left":
             answer = b"left"
-            motors.drive_Left(0.35, 0.25)
+            motors.drive_Left(0.45, 0.35)
 
         if message == b"right":
             answer = b"right"
-            motors.drive_Right(0.25, 0.35)
+            motors.drive_Right(0.35, 0.45)
 
         if message == b"backward":
             answer = b"backward"
-            motors.drive_Backward(0.30, 0.30)
+            motors.drive_Backward(0.40, 0.40)
 
         clientAddress = bytesAddressPair[1]
         print(clientAddress)
