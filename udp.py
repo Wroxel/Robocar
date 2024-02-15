@@ -5,7 +5,7 @@ import network
 import socket
 
 
-def udp_1():
+def udp_connection():
     motors.IN1 = Pin(2, Pin.OUT)
     adc = ADC(Pin(26))
     wlan = network.WLAN(network.STA_IF)
@@ -33,13 +33,6 @@ def udp_1():
         answer = b"default answer"
 
         # Tilføj forskellige messages & funktioner her 😎 ->
-
-        if message == b"on":
-            answer = b"on"
-            motors.drivePWM()
-
-        if message == b"off":
-            motors.IN1.off()
 
         if message == b"ana":
             answer = str(adc.read_u16())

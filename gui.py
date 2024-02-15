@@ -45,6 +45,7 @@ window.bind("d", "right")
 while True:
     event, values = window.read()
     print(event, values)
+    
     if event == sg.WINDOW_CLOSED:
         break
 

@@ -22,7 +22,11 @@ def stopDrive():
     IN4.off()
 
 
-# Kører ligeud
+
+
+# Motor for Wall Follow Mode — START
+
+
 def straight_Drive(left_speed, right_speed):
     pwm1.freq(800)
     pwm2.freq(800)
@@ -32,14 +36,10 @@ def straight_Drive(left_speed, right_speed):
 
     IN2.on()
     IN4.on()
-    time.sleep(2.5)
-    IN2.off()
-    IN4.off()
 
     return
 
 
-# Kører til venstre
 def left_Drive(left_speed, right_speed):
     pwm1.freq(800)
     pwm2.freq(800)
@@ -71,6 +71,15 @@ def left_Drive_Long(left_speed, right_speed):
 
     return
 
+
+# Motor for Wall Follow Mode — SLUT
+
+
+
+
+
+
+# Motor for Remote Control Mode — START
 
 def drive_Forward(left_speed, right_speed):
     IN1.off()
@@ -148,63 +157,70 @@ def drive_Backward(left_speed, right_speed):
     IN3.off()
 
 
-def drivePWM():
-    # Kode der gøre at motorene køre men en bestemt hastighed hele tiden.
+# Motor for Remote Control Mode — SLUT
 
-    pwm1.freq(1400)
-    pwm2.freq(1400)
 
-    dutycycle1 = 0.35
-    dutycycle2 = 0.35
-    upwards = True
 
-    while True:
-        time.sleep(3)
-        IN3.off()
-        IN2.off()
-        IN4.off()
-        IN1.off()
-        time.sleep(3)
-        IN3.on()
-        IN2.on()
-        pwm1.duty_u16(int(65536 * dutycycle1))
-        pwm2.duty_u16(int(65536 * dutycycle2))
-        time.sleep(3)
-        IN3.off()
-        IN2.off()
-        time.sleep(0.5)
-        IN4.on()
-        IN1.on()
-        time.sleep(3)
-        IN4.off()
-        IN1.off()
-        time.sleep(0.5)
-        IN1.on()
-        IN3.on()
-        time.sleep(3)
-        IN1.off()
-        IN3.off()
-        break
-    stopDrive()
 
-    # Kode der gøre motoren køre hurtigere og hurtigere.
 
-    # i = 0
 
-    # for i in range(40):
-    #     IN1.on()
-    #     pwm1.freq(20)
-    #     pwm1.duty_u16(int(65536 * dutycycle))
-    #     time.sleep(0.2)
-    #     if upwards:
-    #         dutycycle = dutycycle + 0.03
-    #         if dutycycle >= 0.9:
-    #             upwards = False
-    #     else:
-    #         dutycycle = dutycycle - 0.03
-    #         if dutycycle <= 0.2:
-    #             upwards = True
-    #     print(i)
-    #     i += 1
+# Motor for Sumo Mode — START
 
-    # IN1.off()
+def sumo_drive_Backward(left_speed, right_speed):
+    IN1.off()
+    IN3.off()
+    IN2.off()
+    IN4.off()
+
+    pwm1.freq(800)
+    pwm2.freq(800)
+
+    pwm1.duty_u16(int(65536 * left_speed))
+    pwm2.duty_u16(int(65536 * right_speed))
+
+    IN1.on()
+    IN3.on()
+    time.sleep(2)
+    IN1.off()
+    IN3.off()
+
+
+def sumo_drive_Right(left_speed, right_speed):
+    IN1.off()
+    IN3.off()
+    IN2.off()
+    IN4.off()
+
+    pwm1.freq(800)
+    pwm2.freq(800)
+
+    pwm1.duty_u16(int(65536 * left_speed))
+    pwm2.duty_u16(int(65536 * right_speed))
+
+    IN2.on()
+    IN3.on()
+    time.sleep(0.8)
+    IN2.off()
+    IN3.off()
+
+
+def sumo_drive_Left(left_speed, right_speed):
+    IN1.off()
+    IN3.off()
+    IN2.off()
+    IN4.off()
+
+    pwm1.freq(800)
+    pwm2.freq(800)
+
+    pwm1.duty_u16(int(65536 * left_speed))
+    pwm2.duty_u16(int(65536 * right_speed))
+
+    IN2.on()
+    IN3.on()
+    time.sleep(0.8)
+    IN2.off()
+    IN3.off()
+
+
+# Motor for Sumo Mode — SLUT

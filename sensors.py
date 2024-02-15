@@ -1,5 +1,5 @@
 # Indeholder både GY-53 og IR-Sensor
-from machine import Pin
+from machine import Pin, ADC
 import time
 
 
@@ -14,7 +14,7 @@ def gy53():
         while gy53.value() == False:
             pass
         startTime = time.ticks_us()
-        
+
         # Echo signal slutter
         while gy53.value() == True:
             pass
@@ -22,10 +22,11 @@ def gy53():
 
         diffInMicroS = endtime - startTime
         diffInCM = diffInMicroS / 100
-
         return diffInCM
+
 
 
 # QR113
 def qr113():
-    return 0
+    refl_sens = ADC(Pin(28))
+    return refl_sens.read_u16()

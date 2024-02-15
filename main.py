@@ -1,15 +1,21 @@
-import motors
-import udp
-import time
-
-# import mode_remote
-# import mode_sumo
+# Modes
+import mode_remote
+import mode_sumo
 import mode_wallfollow
 
 
 def main():
+    # Remote Control 
+    # mode_remote.remote_control()
+    
+    
+    # Sumo 
+    mode_sumo.sumo_mode()
+    
+    
+    # Wall Follow 
     # mode_wallfollow.wall_follow()
-    udp.udp_1()
+
 
 
 if __name__ == "__main__":
