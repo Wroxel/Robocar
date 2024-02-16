@@ -25,7 +25,6 @@ def gy53():
         return diffInCM
 
 
-
 # QR113
 def qr113():
     refl_sens = ADC(Pin(28))
