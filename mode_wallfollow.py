@@ -1,42 +1,59 @@
 import sensors
 import motors
-from time import sleep
+import time
 
 
 def wall_follow():
-    sleep(5)
+    time.sleep(5)
     while True:
         distance = sensors.gy53()
 
-        if distance > 100:
-            print(f"Drive right distance is {distance}")
+        # Kode som reagere på front mod væg og hjørner — Start
+        
+        # I mod væg
+        if distance < 4:
+            motors.drive_Backward(0.30, 0.30)
+        
+        # Hjørne
+        if distance > 150:
+            # Få motoren til at kører 90 grader til højre og køre ligeud i antal sekunder???
+            
+        
+        # Kode som reagere på front mod væg og hjørner — Slut
+        
+        
+        
+        
+        # Kode som holder afstanden til væggen — Start
+        
+        if 100 < distance <= 150:
             motors.left_Drive_Long(0.46, 0.25)
-            sleep(0.1)
+            time.sleep(0.1)
             motors.left_Drive(0.25, 0.48)
-            sleep(0.1)
+            time.sleep(0.1)
             motors.stopDrive()
 
-        if distance > 50:
-            print(f"Drive right distance is {distance}")
+        elif distance > 50:
             motors.left_Drive(0.45, 0.25)
-            sleep(0.1)
+            time.sleep(0.1)
             motors.left_Drive(0.25, 0.42)
-            sleep(0.1)
+            time.sleep(0.1)
             motors.stopDrive()
 
         elif 20 < distance <= 50:
-            print(f"Drive forward distance is {distance}")
             motors.straight_Drive(0.35, 0.35)
-            sleep(0.1)
+            time.sleep(0.1)
             motors.stopDrive()
 
-        elif 0 <= distance <= 20:
-            print(f"Drive left distance is {distance}")
+        elif 4 <= distance <= 20:
             motors.left_Drive(0.25, 0.45)
-            sleep(0.1)
+            time.sleep(0.1)
             motors.left_Drive(0.42, 0.28)
-            sleep(0.1)
+            time.sleep(0.1)
             motors.stopDrive()
         else:
             print("Error")
-        sleep(0.1)
+            
+        # Kode som holder afstanden til væggen — Start
+        
+        time.sleep(0.1)

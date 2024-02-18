@@ -1,6 +1,5 @@
 from machine import Pin, PWM
 import time
-import sensors
 
 # Højre motor
 IN1 = Pin(2, Pin.OUT)
@@ -74,8 +73,11 @@ def left_Drive_Long(left_speed, right_speed):
 # Motor for Wall Follow Mode — SLUT
 
 
-# Motor for Remote Control Mode — START
 
+
+
+
+# Motor for Remote Control Mode — START
 
 def drive_Forward(left_speed, right_speed):
     IN1.off()
@@ -83,8 +85,8 @@ def drive_Forward(left_speed, right_speed):
     IN2.off()
     IN4.off()
 
-    pwm1.freq(500)
-    pwm2.freq(500)
+    pwm1.freq(800)
+    pwm2.freq(800)
 
     pwm1.duty_u16(int(65536 * left_speed))
     pwm2.duty_u16(int(65536 * right_speed))
@@ -156,6 +158,10 @@ def drive_Backward(left_speed, right_speed):
 # Motor for Remote Control Mode — SLUT
 
 
+
+
+
+
 # Motor for Sumo Mode — START
 
 
@@ -173,7 +179,7 @@ def sumo_drive_Backward(left_speed, right_speed):
 
     IN1.on()
     IN3.on()
-    time.sleep(2)
+    time.sleep(3.5)
     IN1.off()
     IN3.off()
 
@@ -216,6 +222,27 @@ def sumo_drive_Left(left_speed, right_speed):
     IN3.off()
 
 
+# Sumo Mode Scanning — Start
+
+def scan_All(left_speed, right_speed):
+    IN1.off()
+    IN3.off()
+    IN2.off()
+    IN4.off()
+
+    pwm1.freq(800)
+    pwm2.freq(800)
+
+    pwm1.duty_u16(int(65536 * left_speed))
+    pwm2.duty_u16(int(65536 * right_speed))
+
+    IN2.on()
+    IN3.on()
+    time.sleep(0.5)
+    IN2.off()
+    IN3.off()
+
+
 def scan_Left(left_speed, right_speed):
     IN1.off()
     IN3.off()
@@ -231,18 +258,10 @@ def scan_Left(left_speed, right_speed):
     IN2.on()
     IN3.on()
 
-    global left_steps
-    left_steps = 0
-
-    time.sleep(0.1)
-
-    left_steps += 1
-    print("Lefts steps:", left_steps)
-
+    time.sleep(0.2)
+    
     IN2.off()
     IN3.off()
-
-    return left_steps
 
 
 def scan_Right(left_speed, right_speed):
@@ -259,28 +278,30 @@ def scan_Right(left_speed, right_speed):
 
     IN2.on()
     IN3.on()
-    global right_steps
-    right_steps = 0
 
-    time.sleep(0.1)
+    time.sleep(0.2)
 
-    right_steps += 1
-    print("Right steps:", right_steps)
     IN2.off()
     IN3.off()
-    return right_steps
 
 
-def scan_Middle():
-    scan_Sum = left_steps + right_steps
-    scan_Average = scan_Sum / 2
-    print("Gennemsnit af steps:", scan_Average)
+def sumo_Drive_Forward(left_speed, right_speed):
+    IN1.off()
+    IN3.off()
+    IN2.off()
+    IN4.off()
 
-    while True:
-        scan_Left(0.30, 0.35)
+    pwm1.freq(800)
+    pwm2.freq(800)
 
-        if scan_Left == scan_Average:
-            break
+    pwm1.duty_u16(int(65536 * left_speed))
+    pwm2.duty_u16(int(65536 * right_speed))
+
+    IN2.on()
+    IN4.on()
+    time.sleep(2)
+    IN1.off()
+    IN3.off()
 
 
 # Motor for Sumo Mode — SLUT
