@@ -9,26 +9,21 @@ def wall_follow():
         distance = sensors.gy53()
 
         # Kode som reagere på front mod væg og hjørner — Start
-        
+
         # I mod væg
         if distance < 4:
             motors.drive_Backward(0.30, 0.30)
-        
+
         # Hjørne
         if distance > 150:
+            print(0)
             # Få motoren til at kører 90 grader til højre og køre ligeud i antal sekunder???
-            
-        
+
         # Kode som reagere på front mod væg og hjørner — Slut
-        
-        
-        
-        
+
         # Kode som holder afstanden til væggen — Start
-        
+
         if 100 < distance <= 150:
-            motors.left_Drive_Long(0.46, 0.25)
-            time.sleep(0.1)
             motors.left_Drive(0.25, 0.48)
             time.sleep(0.1)
             motors.stopDrive()
@@ -53,7 +48,7 @@ def wall_follow():
             motors.stopDrive()
         else:
             print("Error")
-            
+
         # Kode som holder afstanden til væggen — Start
-        
+
         time.sleep(0.1)
