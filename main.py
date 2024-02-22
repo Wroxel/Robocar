@@ -4,13 +4,13 @@ import mode_remote
 import mode_sumo
 import mode_wallfollow
 import motors
+import mode_sumo2
 
 
 def main():
     # mode_remote.remote_control()
-   
-    while True:
-        mode_sumo.sumo_mode()
+
+    mode_sumo2.sumo_mode2()
 
     # mode_wallfollow.wall_follow()
 
