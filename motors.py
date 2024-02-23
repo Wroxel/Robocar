@@ -47,7 +47,7 @@ def wall_straight_Drive(left_speed, right_speed):
 
     IN2.on()
     IN4.on()
-    time.sleep(0.015)
+    time.sleep(0.025)
     IN2.off()
     IN4.off()
 
@@ -60,7 +60,7 @@ def wall_gone_cont(left_speed, right_speed):
 
     IN2.on()
     IN4.on()
-    time.sleep(0.05)
+    time.sleep(0.1)
     IN2.off()
     IN4.off()
 
@@ -74,6 +74,19 @@ def wall_left_Drive(left_speed, right_speed):
     IN2.on()
     IN4.on()
     time.sleep(0.1)
+    IN2.off()
+    IN4.off()
+
+
+def wall_drive_Right(left_speed, right_speed):
+    stopDrive()
+
+    setSpeed(LEFT, left_speed)
+    setSpeed(RIGHT, right_speed)
+
+    IN2.on()
+    IN4.on()
+    time.sleep(0.2)
     IN2.off()
     IN4.off()
 
@@ -161,7 +174,7 @@ def drive_Backward(left_speed, right_speed):
 
     IN1.on()
     IN3.on()
-    time.sleep(0.5)
+    time.sleep(0.4)
     IN1.off()
     IN3.off()
 

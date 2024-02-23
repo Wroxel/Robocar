@@ -1,11 +1,10 @@
 # Modes
 import sensors
 import mode_remote
-import mode_sumo
-import mode_wallfollow
 import mode_wallfollow2
 import motors
 import mode_sumo2
+import choose_mode
 
 
 def main():
@@ -13,8 +12,9 @@ def main():
 
     # mode_sumo2.sumo_mode2()
 
-    # mode_wallfollow.wall_follow()
-    mode_wallfollow2.wall_follow2()
+    # mode_wallfollow2.wall_follow2()
+
+    choose_mode.choose_gamemode()
 
 
 if __name__ == "__main__":
