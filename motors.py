@@ -19,6 +19,7 @@ pwm2.freq(700)
 LEFT = 0
 RIGHT = 1
 
+
 # Sætter PWM speed
 def setSpeed(motor, speed):
     if motor == 0:
@@ -35,11 +36,6 @@ def stopDrive():
     IN4.off()
 
 
-
-
-
-
-
 # Motor for Wall Follow Mode — START
 
 
@@ -51,6 +47,22 @@ def wall_straight_Drive(left_speed, right_speed):
 
     IN2.on()
     IN4.on()
+    time.sleep(0.015)
+    IN2.off()
+    IN4.off()
+
+
+def wall_gone_cont(left_speed, right_speed):
+    stopDrive()
+
+    setSpeed(LEFT, left_speed)
+    setSpeed(RIGHT, right_speed)
+
+    IN2.on()
+    IN4.on()
+    time.sleep(0.05)
+    IN2.off()
+    IN4.off()
 
 
 def wall_left_Drive(left_speed, right_speed):
@@ -61,16 +73,42 @@ def wall_left_Drive(left_speed, right_speed):
 
     IN2.on()
     IN4.on()
-    time.sleep(1)
+    time.sleep(0.1)
     IN2.off()
     IN4.off()
 
 
+def wall_look_right(left_speed, right_speed):
+    stopDrive()
+
+    setSpeed(LEFT, left_speed)
+    setSpeed(RIGHT, right_speed)
+
+    IN2.on()
+    IN3.on()
+
+    time.sleep(0.4)
+
+    IN2.off()
+    IN3.off()
+
+
+def wall_look_left(left_speed, right_speed):
+    stopDrive()
+
+    setSpeed(LEFT, left_speed)
+    setSpeed(RIGHT, right_speed)
+
+    IN1.on()
+    IN4.on()
+
+    time.sleep(0.4)
+
+    IN1.off()
+    IN4.off()
+
+
 # Motor for Wall Follow Mode — SLUT
-
-
-
-
 
 
 # Motor for Remote Control Mode — START
@@ -123,7 +161,7 @@ def drive_Backward(left_speed, right_speed):
 
     IN1.on()
     IN3.on()
-    time.sleep(0.2)
+    time.sleep(0.5)
     IN1.off()
     IN3.off()
 
@@ -131,12 +169,8 @@ def drive_Backward(left_speed, right_speed):
 # Motor for Remote Control Mode — SLUT
 
 
-
-
-
-
-
 # Motor for Sumo Mode — START
+
 
 def sumo_Drive_Forward(left_speed, right_speed):
     IN1.off()
@@ -166,9 +200,9 @@ def sumo_drive_Backward(left_speed, right_speed):
 
     IN1.on()
     IN3.on()
-    
+
     time.sleep(3)
-    
+
     IN1.off()
     IN3.off()
 
@@ -186,7 +220,6 @@ def sumo_drive_Right(left_speed, right_speed):
     IN3.off()
 
 
-
 # Sumo Mode Scanning — Start
 
 
@@ -198,9 +231,9 @@ def scan_All(left_speed, right_speed):
 
     IN2.on()
     IN3.on()
-   
+
     time.sleep(0.1)
-   
+
     IN2.off()
     IN3.off()
 
@@ -236,4 +269,3 @@ def scan_Left(left_speed, right_speed):
 
 
 # Sumo Mode Scanning — Slut
-

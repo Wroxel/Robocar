@@ -23,7 +23,6 @@ def gy53():
         diffInMicroS = endtime - startTime
         diffInCM = diffInMicroS / 100
         return diffInCM
-        # yield diffInCM
 
 
 # QR113

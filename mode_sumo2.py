@@ -3,22 +3,35 @@ import sensors
 import time
 
 
+def moving_average(data, window_size):
+    if len(data) < window_size:
+        return sum(data) / len(data)
+    return sum(data[-window_size:]) / window_size
+
+
 def sumo_mode2():
+    window_size = 5
+    distance_buffer = []
+
     while True:
         distance = sensors.gy53()
+        distance_buffer.append(distance)
+
+        avg_distance = moving_average(distance_buffer, window_size)
+
         reflective_surface = sensors.qr113() / 100
 
-        while distance >= 100:
-            distance = sensors.gy53()
-
+        # SCAN ALL > 100 CM
+        if avg_distance >= 150:
             motors.scan_All(0.35, 0.35)
-
-        while distance < 100:
-            distance = sensors.gy53()
             reflective_surface = sensors.qr113() / 100
 
-            motors.drive_Forward(0.45, 0.45)
+        # KØRE LIGEUD < UNDER 100 CM
+        else:
+            motors.drive_Forward(0.40, 0.40)
+            reflective_surface = sensors.qr113() / 100
 
+            # KØRE TILBAGE -> UDOVER STREG
             if reflective_surface >= 300:
                 motors.stopDrive()
                 time.sleep(0.1)
