@@ -5,7 +5,7 @@ import time
 
 # GY53
 def gy53():
-    gy53 = Pin(17, Pin.IN)
+    gy53 = Pin(27, Pin.IN)
     while True:
 
         # Echo signal starter

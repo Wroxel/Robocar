@@ -13,6 +13,9 @@ import mode_sumo2
 from machine import Pin
 
 
+# Link til hjemmesiden -> http://10.120.0.87:84/
+
+
 def choose_gamemode():
     ssid = "ITEK 2nd"
     password = "2nd_Semester_F24v"

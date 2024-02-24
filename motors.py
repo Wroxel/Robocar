@@ -186,17 +186,10 @@ def drive_Backward(left_speed, right_speed):
 
 
 def sumo_Drive_Forward(left_speed, right_speed):
-    IN1.off()
-    IN2.off()
-    IN3.off()
-    IN4.off()
-    # setSpeed(LEFT, left_speed)
-    # setSpeed(RIGHT, right_speed)
-    pwm1.freq(800)
-    pwm2.freq(800)
+    stopDrive()
 
-    pwm1.duty_u16(int(65536 * left_speed))
-    pwm2.duty_u16(int(65536 * right_speed))
+    setSpeed(LEFT, left_speed)
+    setSpeed(RIGHT, right_speed)
 
     IN2.on()
     IN4.on()
