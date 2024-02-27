@@ -47,7 +47,7 @@ def wall_straight_Drive(left_speed, right_speed):
 
     IN2.on()
     IN4.on()
-    time.sleep(0.025)
+    time.sleep(0.028)
     IN2.off()
     IN4.off()
 
@@ -174,7 +174,7 @@ def drive_Backward(left_speed, right_speed):
 
     IN1.on()
     IN3.on()
-    time.sleep(0.4)
+    time.sleep(0.2)
     IN1.off()
     IN3.off()
 
@@ -193,7 +193,7 @@ def sumo_Drive_Forward(left_speed, right_speed):
 
     IN2.on()
     IN4.on()
-    time.sleep(0.1)
+    time.sleep(0.065)
     IN2.off()
     IN4.off()
 
@@ -207,7 +207,7 @@ def sumo_drive_Backward(left_speed, right_speed):
     IN1.on()
     IN3.on()
 
-    time.sleep(3)
+    time.sleep(1)
 
     IN1.off()
     IN3.off()
@@ -221,7 +221,7 @@ def sumo_drive_Right(left_speed, right_speed):
 
     IN2.on()
     IN3.on()
-    time.sleep(0.3)
+    time.sleep(0.5)
     IN2.off()
     IN3.off()
 
@@ -238,7 +238,7 @@ def scan_All(left_speed, right_speed):
     IN2.on()
     IN3.on()
 
-    time.sleep(0.1)
+    time.sleep(0.045)
 
     IN2.off()
     IN3.off()

@@ -7,9 +7,9 @@ import network
 import time
 import motors
 import mode_remote
-import mode_wallfollow2
+import mode_wallfollow
 import motors
-import mode_sumo2
+import mode_sumo
 from machine import Pin
 
 
@@ -106,14 +106,14 @@ def choose_gamemode():
                 pin_LedRED.on()
                 pin_LedYELLOW.off()
 
-                mode_sumo2.sumo_mode2()
+                mode_sumo.sumo_mode2()
                 print("Sumo Mode")
             if wallfollow == 6:
                 pin_LedGREEN.off()
                 pin_LedRED.off()
                 pin_LedYELLOW.on()
 
-                mode_wallfollow2.wall_follow2()
+                mode_wallfollow.wall_follow2()
                 print("Wallfollow Mode")
 
             response = web_page()
