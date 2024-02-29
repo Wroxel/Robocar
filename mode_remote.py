@@ -39,19 +39,19 @@ def remote_control():
 
         if message == b"forward":
             answer = b"forward"
-            motors.drive_Forward(0.80, 0.80)
+            motors.drive_Forward(0.75, 0.75)
 
         if message == b"left":
             answer = b"left"
-            motors.drive_Left(0.50, 0.40)
+            motors.drive_Left(0.50, 0.50)
 
         if message == b"right":
             answer = b"right"
-            motors.drive_Right(0.40, 0.50)
+            motors.drive_Right(0.50, 0.50)
 
         if message == b"backward":
             answer = b"backward"
-            motors.drive_Backward(0.50, 0.50)
+            motors.drive_Backward(0.75, 0.75)
 
         clientAddress = bytesAddressPair[1]
         print(clientAddress)

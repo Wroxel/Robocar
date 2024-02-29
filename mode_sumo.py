@@ -1,92 +1,43 @@
 import motors
 import sensors
 import time
-import mode_debug
 
-# NUMMER 1 LØSNING (KØRER LIGEUD NÅR MÅLER NOGET)
-
-def gennemsnitlig_måling(data, window_size):
-    if len(data) < window_size:
-        pass
-    return int(sum(data[-window_size:]) / window_size)
+# NUMMER 1 LØSNING (FØRSTE)
 
 
-def getAverage(antalMålinger):
-    total = 0
+def get_smoothed_distance(window_size=5):
 
-    for x in range(antalMålinger):
-        total += sensors.gy53()
-
-    return total / antalMålinger
-
-
-def sumo_mode2():
-    window_size = 5
     distance_buffer = [sensors.gy53()] * window_size
     buffer_index = 0
 
     while True:
         distance_buffer[buffer_index] = sensors.gy53()
-
         buffer_index = (buffer_index + 1) % window_size
 
         avg_distance = sum(distance_buffer) / window_size
-
-
-
-        reflective_surface = sensors.qr113() / 100
-
-        # SCAN ALL > 125 CM
-        if avg_distance >= 150:
-            motors.scan_All(0.45, 0.45)
-            reflective_surface = sensors.qr113() / 100
-
-        # KØRE LIGEUD < UNDER 125 CM
-        else:
-            motors.sumo_Drive_Forward(0.50, 0.58)
-            reflective_surface = sensors.qr113() / 100
-
-            # KØRE TILBAGE -> UDOVER STREG
-            if reflective_surface >= 300:
-                motors.sumo_drive_Backward(0.35, 0.60)
-
-
-
-
-# NUMMER 2 LØSNING (WHILE STATEMENT)
-
-def drive_forward():
-    while True:
-        motors.sumo_Drive_Forward(0.50, 0.58)
-        reflective_surface = sensors.qr113() / 100
-        if reflective_surface >= 300:
-            motors.sumo_drive_Backward(0.35, 0.60)
-            break
+        return avg_distance
 
 
 def sumo_mode2():
-    window_size = 5
-    distance_buffer = [sensors.gy53()] * window_size
-    buffer_index = 0
-
     while True:
-        distance_buffer[buffer_index] = sensors.gy53()
-
-        buffer_index = (buffer_index + 1) % window_size
-
-        avg_distance = sum(distance_buffer) / window_size
-        print(avg_distance)
+        avg_distance = get_smoothed_distance()
         reflective_surface = sensors.qr113() / 100
 
-        # SCAN ALL > 125 CM
+        # SCAN ALL > 150 CM
         if avg_distance >= 150:
-            motors.scan_All(0.45, 0.45)
-            reflective_surface = sensors.qr113() / 100
+            while avg_distance >= 150:
+                motors.scan_All(0.52, 0.52)
+                avg_distance = get_smoothed_distance()
 
+        # KØRE LIGEUD < UNDER 150 CM
         else:
-            drive_forward()
-
-            # Backward if reflective surface detected
-            if reflective_surface >= 300:
-                motors.sumo_drive_Backward(0.35, 0.60)
-            # KØRE TILBAGE -> UDOVER STREG
+            # Drive forward until reflective surface is over 300
+            while reflective_surface < 300 and avg_distance < 125:
+                motors.sumo_Drive_Forward(0.50, 0.54)
+                reflective_surface = sensors.qr113() / 100
+                if reflective_surface >= 300:
+                    # Drive backward and break
+                    motors.sumo_drive_Backward(0.40, 0.40)
+                    time.sleep(0.1)
+                    motors.sumo_drive_Right(0.35, 0.35)
+                    break

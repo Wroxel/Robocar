@@ -47,7 +47,7 @@ def wall_straight_Drive(left_speed, right_speed):
 
     IN2.on()
     IN4.on()
-    time.sleep(0.028)
+    time.sleep(0.025)
     IN2.off()
     IN4.off()
 
@@ -73,7 +73,7 @@ def wall_left_Drive(left_speed, right_speed):
 
     IN2.on()
     IN4.on()
-    time.sleep(0.1)
+    time.sleep(0.06)
     IN2.off()
     IN4.off()
 
@@ -86,24 +86,9 @@ def wall_drive_Right(left_speed, right_speed):
 
     IN2.on()
     IN4.on()
-    time.sleep(0.2)
+    time.sleep(0.06)
     IN2.off()
     IN4.off()
-
-
-def wall_look_right(left_speed, right_speed):
-    stopDrive()
-
-    setSpeed(LEFT, left_speed)
-    setSpeed(RIGHT, right_speed)
-
-    IN2.on()
-    IN3.on()
-
-    time.sleep(0.4)
-
-    IN2.off()
-    IN3.off()
 
 
 def wall_look_left(left_speed, right_speed):
@@ -115,7 +100,7 @@ def wall_look_left(left_speed, right_speed):
     IN1.on()
     IN4.on()
 
-    time.sleep(0.4)
+    time.sleep(0.3)
 
     IN1.off()
     IN4.off()
@@ -135,7 +120,7 @@ def drive_Forward(left_speed, right_speed):
 
     IN2.on()
     IN4.on()
-    time.sleep(0.2)
+    time.sleep(0.17)
     IN2.off()
     IN4.off()
 
@@ -148,7 +133,7 @@ def drive_Left(left_speed, right_speed):
 
     IN1.on()
     IN4.on()
-    time.sleep(0.2)
+    time.sleep(0.17)
     IN1.off()
     IN4.off()
 
@@ -161,7 +146,7 @@ def drive_Right(left_speed, right_speed):
 
     IN2.on()
     IN3.on()
-    time.sleep(0.2)
+    time.sleep(0.17)
     IN2.off()
     IN3.off()
 
@@ -174,7 +159,7 @@ def drive_Backward(left_speed, right_speed):
 
     IN1.on()
     IN3.on()
-    time.sleep(0.2)
+    time.sleep(0.17)
     IN1.off()
     IN3.off()
 
@@ -221,7 +206,7 @@ def sumo_drive_Right(left_speed, right_speed):
 
     IN2.on()
     IN3.on()
-    time.sleep(0.5)
+    time.sleep(0.4)
     IN2.off()
     IN3.off()
 

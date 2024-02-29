@@ -10,23 +10,24 @@ def wall_follow2():
     while True:
         distance = sensors.gy53()
 
-        # 15 cm fra væggen
-        if distance <= 15:
+        # 20 cm fra væggen
+        if distance <= 20:
             motors.drive_Backward(0.36, 0.41)
             time.sleep(0.1)
-            motors.wall_look_left(0.38, 0.38)
+            motors.wall_look_left(0.40, 0.40)
 
-        # Mellem 15 cm og 55 cm
-        elif 15 < distance < 55:
-            motors.wall_left_Drive(0.38, 0.56)
+        # Mellem 20 cm og 50 cm
+        elif 20 < distance < 40:
+            # 0.34, 0.56
+            motors.wall_left_Drive(0.39, 0.63)
 
-        # Mellem 55 cm og 90 cm -> Idealt
-        elif 55 <= distance <= 90:
-            motors.wall_straight_Drive(0.91, 0.91)
+        # Mellem 50 cm og 90 cm -> Idealt
+        elif 40 <= distance <= 120:
+            motors.wall_straight_Drive(0.97, 1)
 
         # Over 90 cm
-        elif distance > 90:
-            motors.wall_drive_Right(0.51, 0.37)
+        elif distance > 120:
+            motors.wall_drive_Right(0.54, 0.40)
 
         else:
             print("Error")

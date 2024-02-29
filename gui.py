@@ -1,22 +1,39 @@
 import socket
 import PySimpleGUI as sg
 import time
+import threading
 
 
 def send_udp_packet(command):
-    target_ip = "10.120.0.87"
+    target_ip = "10.120.0.5"
     target_port = 5005
 
     message = f"{command}"
 
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    def send_command():
+        nonlocal target_ip, target_port, message
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        try:
+            sock.sendto(message.encode(), (target_ip, target_port))
+            if command == "ana":  # Only update response text when command is "ana"
+                response, _ = sock.recvfrom(
+                    1024
+                )  # Receive response from the IP address
+                print(
+                    "Response from IP address:", response.decode()
+                )  # Print the response
+                window["-RESPONSE_TEXT-"].update(
+                    response.decode()
+                )  # Update the text in the layout
+                # Update the progress bar with the "ana" number
+                ana_number = int(response.decode())
+                window["-PROGRESS_BAR-"].update(ana_number)
+        except Exception as e:
+            sg.popup("Error", e)
+        finally:
+            sock.close()
 
-    try:
-        sock.sendto(message.encode(), (target_ip, target_port))
-    except Exception as e:
-        sg.popup("Error", e)
-    finally:
-        sock.close()
+    threading.Thread(target=send_command).start()
 
 
 layout = [
@@ -28,8 +45,10 @@ layout = [
         sg.Button("←", size=(10, 2), key="left"),
         sg.Button("↓", size=(10, 2), key="down"),
         sg.Button("→", size=(10, 2), key="right"),
-        # sg.Slider(default_value=45, range=(0,100))
+        sg.Text("Response: "),
+        sg.Text("", key="-RESPONSE_TEXT-"),
     ],
+    [sg.ProgressBar(65356, orientation="h", size=(20, 20), key="-PROGRESS_BAR-")],
 ]
 
 window = sg.Window("WASD Keys", layout, use_default_focus=False, finalize=True)
@@ -73,6 +92,10 @@ while True:
         print("Backspace button clicked")
         send_udp_packet("stop")
         time.sleep(0.2)
-    # time.sleep(0.01)
+
+    elif event == "backspace":
+        print("Backspace button clicked")
+        send_udp_packet("ana")
+        time.sleep(0.2)
 
 window.close()

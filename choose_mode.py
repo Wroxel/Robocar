@@ -13,7 +13,7 @@ import mode_sumo
 from machine import Pin
 
 
-# Link til hjemmesiden -> http://10.120.0.87:84/
+# Link til hjemmesiden -> http://10.120.0.5:84/
 
 
 def choose_gamemode():
@@ -105,8 +105,8 @@ def choose_gamemode():
                 pin_LedGREEN.off()
                 pin_LedRED.on()
                 pin_LedYELLOW.off()
-
-                mode_sumo.sumo_mode2()
+                while True:
+                    mode_sumo.sumo_mode2()
                 print("Sumo Mode")
             if wallfollow == 6:
                 pin_LedGREEN.off()

@@ -9,9 +9,10 @@ import mode_debug
 
 
 def main():
-    # mode_remote.remote_control()
+    mode_remote.remote_control()
 
-    mode_sumo.sumo_mode2()
+    # while True:
+    #     mode_sumo.sumo_mode2()
 
     # mode_wallfollow.wall_follow2()
 
