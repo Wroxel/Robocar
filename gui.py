@@ -15,17 +15,10 @@ def send_udp_packet(command):
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         try:
             sock.sendto(message.encode(), (target_ip, target_port))
-            if command == "ana":  # Only update response text when command is "ana"
-                response, _ = sock.recvfrom(
-                    1024
-                )  # Receive response from the IP address
-                print(
-                    "Response from IP address:", response.decode()
-                )  # Print the response
-                window["-RESPONSE_TEXT-"].update(
-                    response.decode()
-                )  # Update the text in the layout
-                # Update the progress bar with the "ana" number
+            if command == "ana":
+                response, _ = sock.recvfrom(1024)
+                print("Response from IP address:", response.decode())
+                window["-RESPONSE_TEXT-"].update(response.decode())
                 ana_number = int(response.decode())
                 window["-PROGRESS_BAR-"].update(ana_number)
         except Exception as e:
@@ -58,7 +51,6 @@ window.bind("w", "up")
 window.bind("a", "left")
 window.bind("s", "down")
 window.bind("d", "right")
-# window.bind("<KeyRelease-w>", "stop")
 
 
 while True:
@@ -71,22 +63,22 @@ while True:
     elif event == "up":
         print("Forward button clicked")
         send_udp_packet("forward")
-        time.sleep(0.2)
+        time.sleep(0.17)
 
     elif event == "right":
         print("Right button clicked")
         send_udp_packet("right")
-        time.sleep(0.2)
+        time.sleep(0.17)
 
     elif event == "left":
         print("Left button clicked")
         send_udp_packet("left")
-        time.sleep(0.2)
+        time.sleep(0.17)
 
     elif event == "down":
         print("Backward button clicked")
         send_udp_packet("backward")
-        time.sleep(0.2)
+        time.sleep(0.17)
 
     elif event == "stop":
         print("Backspace button clicked")
